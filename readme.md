@@ -1,4 +1,3 @@
-
 # Infrastructure Orchestration & Automation - TP Kubernetes & Docker
 
 ## Description
@@ -24,18 +23,15 @@ Ce projet met en pratique la containerisation d'un service de données (API Flas
 ## 1. Exécution locale avec Docker Compose
 
 * **Démarrer les services** :
+
   ```bash
   docker compose up --build -d
   ```
-
-
-
 * **Vérifier l'état des conteneurs** :
 
 ```bash
 docker compose ps
 ```
-
 
 * **Tester l'API** :
 
@@ -43,8 +39,6 @@ docker compose ps
 curl http://localhost:8000/health
 curl http://localhost:8000/ventes
 ```
-
-
 
 ## 2. Déploiement sur un cluster Kubernetes (Minikube)
 
@@ -54,7 +48,6 @@ curl http://localhost:8000/ventes
 minikube start
 ```
 
-
 * **Construire et charger l'image dans Minikube** :
 
 ```bash
@@ -62,14 +55,12 @@ docker build -t mon-service:1.1 ./api
 minikube image load mon-service:1.1
 ```
 
-
 * **Appliquer les manifests Kubernetes** :
 
 ```bash
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```
-
 
 * **Vérifier le déploiement et les pods** :
 
@@ -79,11 +70,9 @@ kubectl get pods
 kubectl get svc
 ```
 
-
 ## Résilience et Approche Déclarative
 
 Grâce à Kubernetes, l'infrastructure est déclarative. Si un pod vient à tomber, le *Deployment* (via son  *ReplicaSet* ) détecte l'écart et recrée automatiquement une nouvelle instance pour respecter le nombre de réplicas souhaité. Le *Service* garantit quant à lui une stabilité d'accès réseau malgré les changements dynamiques d'adresses IP des pods.
-
 
 * **Quelle est la différence entre une image Docker et un conteneur Docker ?**
   * Une image est le modèle figé et immuable de l'application et de son environnement.
@@ -100,14 +89,14 @@ Grâce à Kubernetes, l'infrastructure est déclarative. Si un pod vient à tomb
   * Docker gère les conteneurs d'une seule machine à la fois.
   * Il ne dispose pas de mécanismes natifs pour la répartition automatique de la charge entre plusieurs instances ou la montée en charge selon la demande.
 
-
 ![1789133397631](image/readme/1789133397631.png)
-
 
 ![1789133406814](image/readme/1789133406814.png)
 
-
 ![1789133414375](image/readme/1789133414375.png)
 
-
 ![1789133422364](image/readme/1789133422364.png)
+
+![1792574754332](image/readme/1792574754332.png)
+
+![1792574788626](image/readme/1792574788626.png)
